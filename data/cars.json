@@ -1,0 +1,144 @@
+[
+    {
+        "id": 1,
+        "name": "Mercedes-Benz S-Class",
+        "category": "luxury",
+        "price": "₵2,500/day",
+        "image": "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+        "booked": false
+
+    
+    },
+    {
+        "id": 2,
+        "name":"Mercedes-Benz E-Class",
+        "category":"sedan",
+        "price": "₵1,800/day",
+        "image": "https://images.unsplash.com/photo-1614200187525-663d95c75d25?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+        "booked": false
+    },
+    {
+        "id": 3,
+        "name": "Mercedes-Benz GLE",
+        "category":"suv",
+        "price":"₵2,200/day",
+        "image":"https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+        "booked": false
+    },
+    
+  
+    {
+        "id": 4,
+        "name":"BMW 7 Series",
+        "category":"luxury",
+        "price":"₵2,300/day",
+        "image":"https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+        "booked": false
+    },
+    {
+        "id": 5,
+        "name":"BMW X5",
+        "category":"suv",
+        "price":"₵2,000/day",
+        "image":"https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+        "booked": false
+    },
+    {
+        "id": 6,
+        "name":"BMW 3 Series",
+        "category":"sedan",
+        "price":"₵1,500/day",
+        "image":"https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+        "booked": false
+    },
+    
+  
+    {
+        "id": 7,
+        "name":"Toyota Camry",
+        "category":"sedan",
+        "price":"₵800/day",
+        "image":"https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+        "booked": false
+    },
+    {
+        "id": 8,
+        "name":"Toyota Land Cruiser",
+        "category":"suv",
+        "price":"₵1,200/day",
+        "image":"https://cdn.pixabay.com/photo/2018/07/15/16/24/auto-3539976_640.jpg",
+        "booked": false
+    },
+    {
+        "id": 9,
+        "name":"Toyota Corolla",
+        "category":"sedan",
+        "price":"₵600/day",
+        "image":"https://cdn.pixabay.com/photo/2014/05/18/19/13/toyota-347288_640.jpg",
+        "booked": false
+    },
+    
+  
+    {
+       "id": 10,
+        "name":"Hyundai Sonata",
+        "category":"sedan",
+        "price":"₵700/day",
+        "image":"https://images.unsplash.com/photo-1634737581963-5a22ba471961?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG9uZGElMjBhY2NvcmR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=500",
+       "booked": false
+    },
+    {
+        "id": 11,
+        "name": "Hyundai Tucson",
+        "category":"suv",
+        "price": "₵900/day",
+        "image": "https://images.unsplash.com/photo-1575090536203-2a6193126514?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aHl1bmRhaSUyMHR1Y3NvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=500",
+        "booked": false
+    },
+    
+    
+    {
+        "id": 12,
+        "name": "Honda Accord",
+        "category": "sedan",
+        "price": "₵750/day",
+        "image": "https://images.unsplash.com/photo-1634737581963-5a22ba471961?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG9uZGElMjBhY2NvcmR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=500",
+        "booked": false
+    },
+    {
+        "id": 13,
+       "name": "Honda CR-V",
+        "category": "suv",
+        "price": "₵850/day",
+        "image": "https://images.unsplash.com/photo-1718603494523-ed04bd2115ae?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aG9uZGElMjBjcnZ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=500",
+        "booked": false
+    },
+    
+  
+    {
+        "id": 14,
+       "name": "Cadillac Escalade",
+        "category": "suv",
+        "price": "₵2,800/day",
+        "image": "https://cdn.pixabay.com/photo/2020/06/06/02/00/cadillac-escalade-5264974_1280.jpg",
+        "booked": false
+    },
+    
+  
+    {
+        "id": 15,
+        "name": "Lamborghini Huracán",
+        "category": "luxury",
+        "price": "₵5,000/day",
+        "image": "https://cdn.pixabay.com/photo/2018/01/13/17/30/lamborghini-huracan-3080405_640.jpg",
+        "booked": false
+    },
+    {
+        "id": 16,
+        "name": "Lamborghini Urus",
+        "category": "suv",
+        "price": "₵4,500/day",
+        "image": "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+        "booked": false
+    }
+]
