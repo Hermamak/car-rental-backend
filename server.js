@@ -1,91 +1,81 @@
-// Importing the Express library and other necessary libraries
 const express = require("express");
-const fs = require("fs");           
-const cors = require("cors");       
-const bodyParser = require("body-parser"); 
+const fs = require("fs");
+const cors = require("cors");
+const bodyParser = require("body-parser");
 
 // Creating an express app
 const app = express();
-const PORT = 3000; 
+const PORT = 80;
 
-
-app.use(cors()); 
-app.use(bodyParser.json()); 
+app.use(cors());
+app.use(bodyParser.json());
 
 // Defining the file paths
 const carsFile = "./data/cars.json";
 const bookingsFile = "./data/bookings.json";
 
-// Helper functions for reading and writing JSON files
+// Helper functions
 const readData = (file) => JSON.parse(fs.readFileSync(file, "utf-8"));
-const writeData = (file, data) => fs.writeFileSync(file, JSON.stringify(data, null, 2));
+const writeData = (file, data) =>
+  fs.writeFileSync(file, JSON.stringify(data, null, 2));
 
+// ==== ROUTES ====
 
-
-// Accesing available cars
-app.get("/cars", (req, res) => {
-  const cars = readData(carsFile);              
-  const availableCars = cars.filter(c => !c.booked); // Only show cars not booked
-  res.json(availableCars);                     
+// Root route – server check
+app.get("/", (req, res) => {
+  res.json({ message: "Backend is running! Try /cars or /bookings" });
 });
 
-// Bookings
+// Health check
+app.get("/health", (req, res) => {
+  res.json({ ok: true });
+});
+
+// Get cars
+app.get("/cars", (req, res) => {
+  const cars = readData(carsFile);
+  const availableCars = cars.filter((c) => !c.booked);
+  res.json(availableCars);
+});
+
+// Book a car
 app.post("/book", (req, res) => {
-  
   const { carId, userId, startDate, endDate } = req.body;
 
-  // Reading existing data
   const cars = readData(carsFile);
   const bookings = readData(bookingsFile);
 
-  // Finding the car being booked
-  const car = cars.find(c => c.id === carId);
+  const car = cars.find((c) => c.id === carId);
 
-  
   if (!car || car.booked) {
     return res.status(400).json({ message: "Car not available" });
   }
 
-  
   car.booked = true;
-  writeData(carsFile, cars); // Save changes
+  writeData(carsFile, cars);
 
-  // Create a new booking record
   const newBooking = {
-    id: Date.now(), // unique ID
+    id: Date.now(),
     carId,
     userId,
     startDate,
-    endDate
+    endDate,
   };
 
   bookings.push(newBooking);
   writeData(bookingsFile, bookings);
 
-  // Send confirmation back
   res.json({ message: "Booking successful", booking: newBooking });
 });
 
-
+// Get bookings
 app.get("/bookings", (req, res) => {
   const bookings = readData(bookingsFile);
   res.json(bookings);
 });
 
-// Root route (simple check that the backend is running)
-app.get("/", (req, res) => {
-  res.json({ message: "Backend is running! Try /cars or /bookings" });
-});
-// Root route (simple check that the backend is running)
-app.get("/", (req, res) => {
-  res.json({ message: "Backend is running! Try /cars or /bookings" });
+// Start server
+app.listen(PORT, () => {
+  console.log(`✅ Server running on port ${PORT}`);
 });
 
-app.get("/health", (req, res) => {
-  res.json({ ok: true });
-});
-
-
-
-
-app.listen(PORT, () => console.log(` Server running on http://localhost:${PORT}`));
