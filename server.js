@@ -3,82 +3,106 @@ const fs = require("fs");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-// Creating an express app
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-
 
 app.use(cors());
 app.use(bodyParser.json());
 
-// Defining the file paths
+// ===== File paths =====
 const carsFile = "./data/cars.json";
 const bookingsFile = "./data/bookings.json";
 
-// Helper functions
+// ===== Read & Write helpers =====
 const readData = (file) => JSON.parse(fs.readFileSync(file, "utf-8"));
 const writeData = (file, data) =>
   fs.writeFileSync(file, JSON.stringify(data, null, 2));
 
-// ==== ROUTES ====
+// ===== ROUTES =====
 
-// Root route – server check
+//  Root test
 app.get("/", (req, res) => {
-  res.json({ message: "Backend is running! Try /cars or /bookings" });
+  res.json({ message: "✅ Backend is running — try /cars or /bookings" });
 });
 
-// Health check
+//  Health
 app.get("/health", (req, res) => {
   res.json({ ok: true });
 });
 
-// Get cars
+//  Get available cars
 app.get("/cars", (req, res) => {
-  const cars = readData(carsFile);
-  const availableCars = cars.filter((c) => !c.booked);
-  res.json(availableCars);
+  try {
+    const cars = readData(carsFile);
+    const availableCars = cars.filter((c) => !c.booked);
+    res.json(availableCars);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to load cars", error });
+  }
 });
 
-// Book a car
+//  Book request
 app.post("/book", (req, res) => {
-  const { carId, userId, startDate, endDate } = req.body;
+  const {
+    carId,
+    customerName,
+    customerEmail,
+    customerPhone,
+    driverLicense,
+    startDate,
+    endDate,
+  } = req.body;
 
-  const cars = readData(carsFile);
-  const bookings = readData(bookingsFile);
+  if (!carId || !customerName || !customerEmail || !startDate || !endDate) {
+    return res.status(400).json({ message: "Missing required booking fields" });
+  }
+
+  let cars = readData(carsFile);
+  let bookings = readData(bookingsFile);
 
   const car = cars.find((c) => c.id === carId);
 
-  if (!car || car.booked) {
-    return res.status(400).json({ message: "Car not available" });
+  if (!car) {
+    return res.status(404).json({ message: "Car not found" });
   }
 
+  if (car.booked) {
+    return res.status(400).json({ message: "Car is already booked" });
+  }
+
+  // Mark car as booked
   car.booked = true;
   writeData(carsFile, cars);
 
   const newBooking = {
     id: Date.now(),
     carId,
-    userId,
+    customerName,
+    customerEmail,
+    customerPhone,
+    driverLicense,
     startDate,
     endDate,
+    timestamp: new Date().toISOString(),
   };
 
   bookings.push(newBooking);
   writeData(bookingsFile, bookings);
 
-  res.json({ message: "Booking successful", booking: newBooking });
+  res.json({ message: "✅ Booking successful", booking: newBooking });
 });
 
-// Get bookings
+//  Get all bookings
 app.get("/bookings", (req, res) => {
-  const bookings = readData(bookingsFile);
-  res.json(bookings);
+  try {
+    const bookings = readData(bookingsFile);
+    res.json(bookings);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to load bookings", error });
+  }
 });
 
-// Start server
+//  Start server
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });
-
-
