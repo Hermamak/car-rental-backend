@@ -22,7 +22,7 @@ const writeData = (file, data) =>
 
 
 app.get("/", (req, res) => {
-  res.json({ message: "✅ Backend is running — try /cars or /bookings" });
+  res.json({ message: "Backend is running — try /cars or /bookings" });
 });
 
 
@@ -89,7 +89,7 @@ app.post("/book", (req, res) => {
   bookings.push(newBooking);
   writeData(bookingsFile, bookings);
 
-  res.json({ message: "✅ Booking successful", booking: newBooking });
+  res.json({ message: " Booking successful", booking: newBooking });
 });
 
 //  Get all bookings
@@ -104,5 +104,6 @@ app.get("/bookings", (req, res) => {
 
 //  Start server
 app.listen(PORT, () => {
-  console.log(`✅ Server running on port ${PORT}`);
+  console.log(` Server running on port ${PORT}`);
+
 });
